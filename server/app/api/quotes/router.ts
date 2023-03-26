@@ -1,10 +1,18 @@
-import express from "express";
+import express from 'express'
+import * as controllers from './controllers'
 
-import * as controllers from "./controllers";
-import { QUOTES_BASE_URL } from "./constants";
+const router = express.Router()
 
-const router = express.Router();
+/* POST /api/v1/quotes */
+router.post('/', controllers.createQuote)
 
-router.post(`${QUOTES_BASE_URL}/`, controllers.createQuote);
+/* GET /api/v1/quotes/:id */
+router.get('/:id', controllers.getQuote)
 
-export default router;
+/* PUT /api/v1/quotes/:id */
+router.put('/:id', controllers.updateQuote)
+
+/* POST /api/v1/quotes/:id */
+router.post('/:id', controllers.submitQuote)
+
+export default router

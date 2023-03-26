@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const ExternalLink = styled.a`
+export interface ExternalLinkProps {}
+
+export const ExternalLink = styled.a<ExternalLinkProps>`
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;

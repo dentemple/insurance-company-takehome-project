@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
-export const Section = styled.section``;
+export interface SectionProps {}
+
+export const Section = styled.section<SectionProps>``;
 
 export default Section;

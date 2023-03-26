@@ -1,14 +1,17 @@
 /* components */
 import GlobalStyle from "./GlobalStyle";
 import Provider from "./Provider";
-import { Quotes, Vite } from "../features";
+import Screens from "./Screens";
+import { Vite } from "src/features";
 
 function App() {
   return (
     <Provider>
       <GlobalStyle />
       <Vite />
-      <Quotes />
+      <main>
+        <Screens />
+      </main>
     </Provider>
   );
 }

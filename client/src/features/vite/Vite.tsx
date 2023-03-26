@@ -1,13 +1,19 @@
 /* components */
-import { ExternalLink, Logo, Section } from "../../components";
+import { ExternalLink, Logo, Section } from "src/components";
 
 /* assets */
-import reactLogo from "../../assets/images/react.svg";
+import reactLogo from "src/assets/images/react.svg";
 import viteLogo from "/vite.svg";
 
-export function Vite() {
+/* types */
+export interface ViteProps {}
+
+/**
+ * Section component
+ */
+export function Vite({ ...rest }: ViteProps) {
   return (
-    <Section>
+    <Section as="header" {...rest}>
       <h1>Vite + React</h1>
       <div>
         <ExternalLink href="https://vitejs.dev" target="_blank">

@@ -1,16 +1,18 @@
-import { useEffect, useState } from "react";
+import { Outlet } from 'react-router-dom'
+
 /* components */
-import { Section } from "../../components";
+import { Section } from '../../components'
 
-export function Quotes() {
-  const [quote, setQuote] = useState(null);
-  const [fetchStatus, setFetchStatus] = useState("idle");
+/* types */
+export interface QuoteProps {}
 
+export function Quote({ ...rest }: QuoteProps) {
   return (
-    <Section>
-      <h2>Get a Quote, Today!</h2>
+    <Section {...rest}>
+      <h2>Quote</h2>
+      <Outlet />
     </Section>
-  );
+  )
 }
 
-export default Quotes;
+export default Quote

@@ -1,8 +1,8 @@
-import app from "./app";
-import { authenticateDatabase as quotesDatabase } from "./app/services/user";
+import app from './app'
+import { authenticateDatabase as quotesDatabase } from './databases'
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000
 
-quotesDatabase();
+quotesDatabase()
 
-app.listen(PORT, () => `We are rocking on port ${PORT}!`);
+app.listen(PORT, () => `We are rocking on port ${PORT}!`)

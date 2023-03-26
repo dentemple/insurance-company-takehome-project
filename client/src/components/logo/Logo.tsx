@@ -1,7 +1,9 @@
 import styled from "styled-components";
-import { logoSpin } from "../../assets/keyframes";
+import { logoSpin } from "src/assets/keyframes";
 
-export const Logo = styled.img`
+export interface LogoProps {}
+
+export const Logo = styled.img<LogoProps>`
   height: 6em;
   padding: 1.5em;
   will-change: filter;

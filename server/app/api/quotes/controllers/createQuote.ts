@@ -1,17 +1,21 @@
-import { Request, Response } from "express";
-import User from "../../../services/user/models/User";
+import { Request, Response } from 'express'
+
+import * as constants from '../constants'
+import User from '../../../../databases/models/User'
 
 export async function createQuote(req: Request, res: Response) {
-  const { firstName, lastName } = req.body;
-  console.log({ firstName, lastName });
   try {
-    await User.create({ firstName, lastName });
-    // console.log(user)
-    res.send(200);
+    const user = await User.create({ ...constants.BASE_QUOTE_DATA })
+    user.save()
+
+    const { id } = user
+
+    const url = `${req.protocol}://${req.get('host')}${constants.BASE_QUOTE_URL}/${id}`
+    return res.status(201).send({ resume: url })
   } catch (error) {
-    console.log("createQuote error", error);
-    return res.status(400).json({ error });
+    console.error(error)
+    return res.status(400).json({ error })
   }
 }
 
-export default createQuote;
+export default createQuote

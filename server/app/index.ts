@@ -1,19 +1,27 @@
-import express from "express";
-import bodyParser from "body-parser";
+import express from 'express'
+import bodyParser from 'body-parser'
+import cors from 'cors'
+import morgan from 'morgan'
 
-import { BASE_URL } from "./constants";
-import { router as quotesRouter } from "./api/quotes";
+import * as constants from './constants'
+import { router as quotesRouter } from './api/quotes'
 
-const app = express();
-app.use(express.json());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+const app = express()
 
-app.get("/", (req, res) => res.send({ status: "ok", route: req.path }));
-app.get(`${BASE_URL}`, (req, res) =>
-  res.send({ status: "ok", route: req.path })
-);
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'))
+}
 
-app.use(quotesRouter);
+app.use(cors())
 
-export default app;
+app.use(express.json())
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+
+/* GET / */
+app.get('/', (req, res) => res.send({ status: 'ok', route: req.path }))
+
+/* /api/v1/quotes/* */
+app.use(`${constants.BASE_URL}/quotes`, quotesRouter)
+
+export default app
